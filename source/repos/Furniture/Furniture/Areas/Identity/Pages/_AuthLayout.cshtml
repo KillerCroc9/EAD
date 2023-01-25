@@ -1,0 +1,22 @@
+﻿@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="com-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">@ViewData["Title"]</h4>
+                <a href="/Identity/Account/Login">SING IN </a>
+                <a href="/Identity/Account/Register">SING UP </a>
+            </div>
+            <div class="card-body">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+@*    <script src="~/js/identity.js"></script>
+*@    @await RenderSectionAsync("Scripts", required: false)
+
+}
