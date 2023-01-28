@@ -7,6 +7,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Furniture.Data.FurnitureContext;
 using Furniture.Models;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Furniture.Controllers
 {
@@ -18,7 +22,7 @@ namespace Furniture.Controllers
         {
             _context = context;
         }
-
+        [Authorize]
         // GET: Product
         public async Task<IActionResult> Index()
         {
@@ -56,7 +60,7 @@ namespace Furniture.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Price")] Product product)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,Price,Image")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +92,7 @@ namespace Furniture.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price,Image")] Product product)
         {
             if (id != product.Id)
             {

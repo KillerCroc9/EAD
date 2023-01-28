@@ -28,7 +28,8 @@ namespace Furniture
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -40,10 +41,11 @@ namespace Furniture
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
-            app.UseEndpoints(endpoints =>
+            /*app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
-            });
+            });*/
+            app.MapRazorPages();
             app.Run();
         }
     }
