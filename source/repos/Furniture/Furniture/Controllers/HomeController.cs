@@ -5,6 +5,7 @@ using System.Diagnostics;
 
 namespace Furniture.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         
@@ -14,7 +15,7 @@ namespace Furniture.Controllers
         {
             _logger = logger;
         }
-        [Authorize]
+        
         public IActionResult Index()
         {
             return View();

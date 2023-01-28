@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Furniture.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
         private readonly AuthDB _context;
@@ -22,7 +23,7 @@ namespace Furniture.Controllers
         {
             _context = context;
         }
-        [Authorize]
+        
         // GET: Product
         public async Task<IActionResult> Index()
         {

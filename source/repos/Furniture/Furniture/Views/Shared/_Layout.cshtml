@@ -25,12 +25,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="/Identity/Account/login" >log in</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="/Identity/Account/Register">Sign up</a>
-                        </li>
+                        <partial name="_LoginPartial.cshtml"></partial>
+                        
+                       
                     </ul>
                 </div>
             </div>
