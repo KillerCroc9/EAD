@@ -18,7 +18,16 @@ namespace Furniture.Controllers
         
         public IActionResult Index()
         {
-            return View();
+            if (!HttpContext.Request.Cookies.ContainsKey("first_request"))
+            {
+                HttpContext.Response.Cookies.Append("first_request", DateTime.Now.ToString());
+                return View();
+            }
+            else
+            {
+                return View();
+            }
+            
         }
 
         public IActionResult Privacy()

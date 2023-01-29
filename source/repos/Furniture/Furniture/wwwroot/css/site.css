@@ -16,7 +16,90 @@ html {
   position: relative;
   min-height: 100%;
 }
-
+* {
+    width:100%;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    background: transparent;
+}
 body {
-  margin-bottom: 60px;
+    margin:0;
+    padding:0;
+    /*border: 2px solid black;*/
+   /* background: url(/images/bed.jpeg);*/
+    background-repeat: no-repeat;
+    background-size: auto;
+    
+}
+header {
+    background-color: grey;
+    align-items: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+}
+footer{
+    margin:0;
+    padding:0;
+    background-color:black;
+}
+button {
+    background-color: burlywood;
+    border: 2px solid black;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    width:40%
+}
+a{
+    color:black;
+}
+a:hover{
+    color:red;
+}
+button:hover{
+    background-color:white;
+    color:white;
+}
+.row {
+    margin-right:100px;
+}
+.container{
+    margin:0;
+    padding:0;
+}
+.offset-md-3 {
+    margin-left: 20px;
+}
+.card-body {
+    flex: 1 1 auto;
+    padding: 0;
+}
+.row{
+   margin-bottom:60px;
+    width:100%;
+    margin-top:60px;
+}
+.container {
+    margin: 0;
+    padding: 0;
+    padding-left: 20px;
+}
+.col-sm{
+    height:100px;
+
+}
+img{
+    width:250px;
+    height:250px;
+}
+.container-main{
+    padding-top:150px;
 }

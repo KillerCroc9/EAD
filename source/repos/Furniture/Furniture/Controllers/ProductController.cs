@@ -12,6 +12,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 
+
 namespace Furniture.Controllers
 {
     [Authorize]
@@ -164,5 +165,10 @@ namespace Furniture.Controllers
         {
           return (_context.Product?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+        /*[HttpPost]
+        *//*public IActionResult OnAddCart(Product o)
+        {
+           
+        }*/
     }
 }
