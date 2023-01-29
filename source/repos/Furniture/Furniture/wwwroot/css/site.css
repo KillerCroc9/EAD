@@ -46,7 +46,7 @@ footer{
     background-color:black;
 }
 button {
-    background-color: burlywood;
+    background-color: lightgray;
     border: 2px solid black;
     color: white;
     padding: 15px 32px;
@@ -56,7 +56,8 @@ button {
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
-    width:40%
+    width:30%;
+    border-radius:5px;
 }
 a{
     color:black;
@@ -88,9 +89,10 @@ button:hover{
     margin-top:60px;
 }
 .container {
-    margin: 0;
-    padding: 0;
-    padding-left: 20px;
+    align-items:center;
+    margin:auto;
+    padding-left: 50px;
+    padding-right:50px;
 }
 .col-sm{
     height:100px;
@@ -102,4 +104,23 @@ img{
 }
 .container-main{
     padding-top:150px;
+}
+.table.name {
+    padding-left: 0;
+    border-spacing: 0; /* Removes the cell spacing via CSS */
+    border-collapse: collapse; /* Optional - if you don't want to have double border where cells touch */
+}
+.main {
+    background-image: url(/images/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top:20px;
+}
+.display-4{
+    text-align:center;
+}
+.prod-pg {
+    background-image: url(/images/prods-bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
 }

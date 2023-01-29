@@ -4,18 +4,19 @@
     ViewData["Title"] = "Index";
 }
 
+<body class="prod-pg">
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" style="color:white;">Create New</a>
 </p>
 <table class="table">
-    <thead>
-        <tr>
-            <th>
+        <thead class="table-dark">
+        <tr class="table-info">
+            <th  scope="row">
                 @Html.DisplayNameFor(model => model.Name)
             </th>
-            <th>
+            <th style="width:50px;">
                 @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
@@ -26,7 +27,7 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+        <tr class="table-info">
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
@@ -37,8 +38,8 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> 
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
                
@@ -46,3 +47,4 @@
 }
     </tbody>
 </table>
+</body>
