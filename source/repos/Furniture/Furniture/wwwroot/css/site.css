@@ -1,10 +1,12 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
+    height: 100%;
 }
 
 @media (min-width: 768px) {
   html {
     font-size: 16px;
+    height:100%;
   }
 }
 
@@ -24,40 +26,52 @@ html {
     background: transparent;
 }
 body {
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
     /*border: 2px solid black;*/
-   /* background: url(/images/bed.jpeg);*/
+    /* background: url(/images/bed.jpeg);*/
     background-repeat: no-repeat;
     background-size: auto;
-    
+    display: flex;
+    flex-direction: column;
+    position:relative;
+    min-height:100%;
 }
 header {
     background-color: grey;
     align-items: center;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 80px;
+
 }
-footer{
-    margin:0;
-    padding:0;
-    background-color:black;
+
+footer {
+    
+    padding: 0;
+    background-color: black;
+    flex: 0 0 50px; /*or just height:50px;*/
+    margin-top: 20px;
+}
+.logout{
+    background-color:transparent;
+    border-radius:0;
+    border:0;
 }
 button {
     background-color: lightgray;
     border: 2px solid black;
-    color: white;
-    padding: 15px 32px;
+    color: black;
+    padding:10px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+    
+    font-size:100%;
     margin: 4px 2px;
     cursor: pointer;
     width:30%;
     border-radius:5px;
+}
+.main-btn{
+    align-items:center;
+    padding-left:40%;
 }
 a{
     color:black;
@@ -67,7 +81,21 @@ a:hover{
 }
 button:hover{
     background-color:white;
-    color:white;
+    color:green;
+}
+.btn {
+    background-color: lightgray;
+    border: 2px solid black;
+    color: black;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 100%;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 30%;
+    border-radius: 5px;
 }
 .row {
     margin-right:100px;
@@ -103,18 +131,19 @@ img{
     height:250px;
 }
 .container-main{
-    padding-top:150px;
+    padding-top:50px;
 }
 .table.name {
     padding-left: 0;
     border-spacing: 0; /* Removes the cell spacing via CSS */
     border-collapse: collapse; /* Optional - if you don't want to have double border where cells touch */
 }
-.main {
+.main-pg {
     background-image: url(/images/background.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    padding-top:20px;
+    
+    
 }
 .display-4{
     text-align:center;
@@ -123,4 +152,13 @@ img{
     background-image: url(/images/prods-bg.jpg);
     background-size: cover;
     background-repeat: no-repeat;
+}
+.nav-item{
+    width:40%;
+}
+.navbar-nav{
+    align-items:baseline;
+}
+.ind{
+    color:white;
 }
