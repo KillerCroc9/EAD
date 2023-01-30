@@ -5,7 +5,7 @@
 }
 
 <body class="prod-pg">
-<h1 class="ind">Index</h1>
+@*<h1 class="ind">Index</h1>*@
 
 <p>
     <a asp-action="Create" style="color:white;">Create New</a>
@@ -47,4 +47,17 @@
 }
     </tbody>
 </table>
+@section featured
+        {
+        <section class="featured">
+            <div class="content-wrapper">
+                <hgroup class="title">
+                    <h1 class="ind">@ViewBag.Title.</h1>
+                </hgroup>
+                <p style="color:white">
+                    This is a section. That is named section in Layout template defined by RenderSection
+                </p>
+            </div>
+        </section>
+    }
 </body>

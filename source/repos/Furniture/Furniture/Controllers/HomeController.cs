@@ -20,11 +20,14 @@ namespace Furniture.Controllers
         {
             if (!HttpContext.Request.Cookies.ContainsKey("first_request"))
             {
-                HttpContext.Response.Cookies.Append("first_request", DateTime.Now.ToString());
+                CookieOptions cookieOpt = new CookieOptions();
+                cookieOpt.Expires= new DateTimeOffset(DateTime.Now.AddMinutes(5));//expires in 5 mins
+                HttpContext.Response.Cookies.Append("first_request", DateTime.Now.ToString(),cookieOpt);
                 return View();
             }
             else
             {
+                
                 return View();
             }
             
