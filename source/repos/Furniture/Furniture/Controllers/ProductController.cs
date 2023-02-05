@@ -62,14 +62,38 @@ namespace Furniture.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Price,Image")] Product product)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,Price,file")] ProdInput productInp)
         {
-            if (ModelState.IsValid)
+            Product product = new Product();
+            try
             {
-                _context.Add(product);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                string filename = productInp.file.FileName;
+                filename = Path.GetFileName(filename);
+                string uploadpath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images", filename);
+                var stream = new FileStream(uploadpath, FileMode.Create);
+                productInp.file.CopyToAsync(stream);
+                ViewBag.message = "Data uploaded successfully!";
+
+                product.Id = productInp.Id;
+                product.Name = productInp.Name;
+                product.Description = productInp.Description;
+                product.Price = productInp.Price;
+                product.filename = filename;
+                
+                if (ModelState.IsValid)
+                {
+                    _context.Add(product);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                
             }
+            catch(Exception ex)
+            {
+                ViewBag.message=ex.Message;
+            }
+            
+
             return View(product);
         }
 
@@ -94,7 +118,7 @@ namespace Furniture.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price,Image")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price,file")] ProdInput product)
         {
             if (id != product.Id)
             {
