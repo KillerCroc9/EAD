@@ -10,6 +10,10 @@ namespace Furniture.Data.FurnitureContext;
 
 public class AuthDB : IdentityDbContext<FurnitureUser>
 {
+    /*public AuthDB()
+    {
+        Database.Migrate();
+    }*/
     private readonly ICurrentUserService currentUserService;
     public AuthDB(DbContextOptions<AuthDB> options, ICurrentUserService currentUserService)
         : base(options)
@@ -28,8 +32,8 @@ public class AuthDB : IdentityDbContext<FurnitureUser>
     public DbSet<Furniture.Models.Product> Product { get; set; } = default!;
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer(
-            @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Furniture;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+        optionsBuilder.UseSqlServer(@"Server = localhost, 1440; Database = master; User = sa; Password =
+Docker123!;");
     }
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
