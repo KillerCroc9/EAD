@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Furniture.Migrations
 {
     [DbContext(typeof(AuthDB))]
-    [Migration("20230206165053_[any-name]")]
+    [Migration("20230206175906_[any-name]")]
     partial class anyname
     {
         /// <inheritdoc />

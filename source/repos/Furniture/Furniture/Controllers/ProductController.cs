@@ -68,19 +68,30 @@ namespace Furniture.Controllers
             Product product = new Product();
             try
             {
-                string filename = productInp.file.FileName;
-                filename = Path.GetFileName(filename);
-                string uploadpath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images", filename);
-                var stream = new FileStream(uploadpath, FileMode.Create);
-                productInp.file.CopyToAsync(stream);
-                ViewBag.message = "Data uploaded successfully!";
+                if (productInp.file == null)
+                { //in case no file entered
+                    product.Id = productInp.Id;
+                    product.Name = productInp.Name;
+                    product.Description = productInp.Description;
+                    product.Price = productInp.Price;
 
-                product.Id = productInp.Id;
-                product.Name = productInp.Name;
-                product.Description = productInp.Description;
-                product.Price = productInp.Price;
-                product.filename = filename;
+                    // product.filename = prod.filename; 
+                }
+                else if (productInp.file != null)
+                {
+                    string filename = productInp.file.FileName;
+                    filename = Path.GetFileName(filename);
+                    string uploadpath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images", filename);
+                    var stream = new FileStream(uploadpath, FileMode.Create);
+                    productInp.file.CopyToAsync(stream);
+                    ViewBag.message = "Data uploaded successfully!";
 
+                    product.Id = productInp.Id;
+                    product.Name = productInp.Name;
+                    product.Description = productInp.Description;
+                    product.Price = productInp.Price;
+                    product.filename = filename;
+                }
                 if (ModelState.IsValid)
                 {
                     _context.Add(product);
@@ -124,19 +135,33 @@ namespace Furniture.Controllers
             Product product = new Product();
             try
             {
-                string filename = productInp.file.FileName;
-                filename = Path.GetFileName(filename);
-                string uploadpath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images", filename);
-                var stream = new FileStream(uploadpath, FileMode.Create);
-                productInp.file.CopyToAsync(stream);
-                ViewBag.message = "Data edited successfully!";
+                if (productInp.file == null)
+                { //in case no file entered
+                    product.Id = productInp.Id;
+                    product.Name = productInp.Name;
+                    product.Description = productInp.Description;
+                    product.Price = productInp.Price;
+                    var prod = _context.Product
+                         .Where(p => p.Id == id)
+                         .Select(p => p.filename).Single();
+                    product.filename = prod;
+                    // product.filename = prod.filename; 
+                }
+                else if (productInp.file != null)
+                {
+                    string filename = productInp.file.FileName;
+                    filename = Path.GetFileName(filename);
+                    string uploadpath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images", filename);
+                    var stream = new FileStream(uploadpath, FileMode.Create);
+                    productInp.file.CopyToAsync(stream);
+                    ViewBag.message = "Data edited successfully!";
 
-                product.Id = productInp.Id;
-                product.Name = productInp.Name;
-                product.Description = productInp.Description;
-                product.Price = productInp.Price;
-                product.filename = filename;
-
+                    product.Id = productInp.Id;
+                    product.Name = productInp.Name;
+                    product.Description = productInp.Description;
+                    product.Price = productInp.Price;
+                    product.filename = filename;
+                }
                 if (id != product.Id)
                 {
                     return NotFound();
