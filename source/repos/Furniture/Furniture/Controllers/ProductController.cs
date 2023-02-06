@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 
 namespace Furniture.Controllers
@@ -24,13 +25,13 @@ namespace Furniture.Controllers
         {
             _context = context;
         }
-        
+
         // GET: Product
         public async Task<IActionResult> Index()
         {
-              return _context.Product != null ? 
-                          View(await _context.Product.ToListAsync()) :
-                          Problem("Entity set 'AuthDB.Product'  is null.");
+            return _context.Product != null ?
+                        View(await _context.Product.ToListAsync()) :
+                        Problem("Entity set 'AuthDB.Product'  is null.");
         }
 
         // GET: Product/Details/5
@@ -79,20 +80,20 @@ namespace Furniture.Controllers
                 product.Description = productInp.Description;
                 product.Price = productInp.Price;
                 product.filename = filename;
-                
+
                 if (ModelState.IsValid)
                 {
                     _context.Add(product);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
                 }
-                
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                ViewBag.message=ex.Message;
+                ViewBag.message = ex.Message;
             }
-            
+
 
             return View(product);
         }
@@ -118,32 +119,50 @@ namespace Furniture.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price,file")] ProdInput product)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price,file")] ProdInput productInp)
         {
-            if (id != product.Id)
+            Product product = new Product();
+            try
             {
-                return NotFound();
-            }
+                string filename = productInp.file.FileName;
+                filename = Path.GetFileName(filename);
+                string uploadpath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images", filename);
+                var stream = new FileStream(uploadpath, FileMode.Create);
+                productInp.file.CopyToAsync(stream);
+                ViewBag.message = "Data edited successfully!";
 
-            if (ModelState.IsValid)
-            {
-                try
+                product.Id = productInp.Id;
+                product.Name = productInp.Name;
+                product.Description = productInp.Description;
+                product.Price = productInp.Price;
+                product.filename = filename;
+
+                if (id != product.Id)
                 {
-                    _context.Update(product);
-                    await _context.SaveChangesAsync();
+                    return NotFound();
                 }
-                catch (DbUpdateConcurrencyException)
+
+                if (ModelState.IsValid)
                 {
-                    if (!ProductExists(product.Id))
+                    try
                     {
-                        return NotFound();
+                        _context.Update(product);
+                        await _context.SaveChangesAsync();
                     }
-                    else
+                    catch (DbUpdateConcurrencyException ex)
                     {
+
+                        ViewBag.message = ex.Message;
                         throw;
+
                     }
+                    return RedirectToAction(nameof(Index));
                 }
-                return RedirectToAction(nameof(Index));
+                
+            }
+            catch (Exception ex)
+            {
+                ViewBag.message = ex.Message;
             }
             return View(product);
         }

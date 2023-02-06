@@ -42,6 +42,10 @@ header {
     align-items: center;
 
 }
+.prodimg{
+    width:100px;
+    height:100px;
+}
 
 footer {
     
@@ -141,16 +145,14 @@ img{
 .main-pg {
     background-image: url(/images/background.jpg);
     background-repeat: no-repeat;
-    background-size: cover;
-    
-    
+    background-size:  cover;
 }
 .display-4{
     text-align:center;
 }
 .prod-pg {
     background-image: url(/images/prods-bg.jpg);
-    background-size: cover;
+    background-size: auto cover;
     background-repeat: no-repeat;
 }
 .nav-item{

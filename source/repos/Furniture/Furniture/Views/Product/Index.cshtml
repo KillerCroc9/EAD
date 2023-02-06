@@ -13,9 +13,12 @@
         <table class="table">
                 <thead class="table-dark">
                 <tr class="table-info">
-                    <th  scope="row">
+                    <th  style="width:50px;">
                         @Html.DisplayNameFor(model => model.Name)
                     </th>
+                <th scope="row">
+                    Image
+                </th>
                     <th style="width:50px;">
                         @Html.DisplayNameFor(model => model.Description)
                     </th>
@@ -27,9 +30,13 @@
             </thead>
             <tbody>
         @foreach (var item in Model) {
+                string imgpath = "images/" + item.filename;
                 <tr class="table-info">
                     <td>
                         @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        <img src="@imgpath" class="prodimg" />
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Description)
