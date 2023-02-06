@@ -16,6 +16,18 @@
                     <th  style="width:50px;">
                         @Html.DisplayNameFor(model => model.Name)
                     </th>
+                <th style="width:50px;">
+                    @Html.DisplayNameFor(model => model.CreatedByUser)
+                </th>
+                <th style="width:50px;">
+                    @Html.DisplayNameFor(model => model.CreatedDate)
+                </th>
+                <th style="width:50px;">
+                    @Html.DisplayNameFor(model => model.ModifiedByUser)
+                </th>
+                  <th style="width:50px;">
+                    @Html.DisplayNameFor(model => model.ModifiedDate)
+                </th>
                 <th scope="row">
                     Image
                 </th>
@@ -35,6 +47,19 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
+                   
+                     <th style="width:50px;">
+                        @Html.DisplayFor(modelItem => item.CreatedByUser)
+                </th>
+                <th style="width:50px;">
+                        @Html.DisplayFor(modelItem => item.CreatedDate)
+                </th>
+                    <th style="width:50px;">
+                        @Html.DisplayFor(modelItem => item.ModifiedByUser)
+                    </th>
+                    <th style="width:50px;">
+                        @Html.DisplayFor(modelItem => item.ModifiedDate)
+                    </th>
                     <td>
                         <img src="@imgpath" class="prodimg" />
                     </td>

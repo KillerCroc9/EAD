@@ -25,7 +25,7 @@ namespace Furniture.Controllers
         {
             _context = context;
         }
-
+        
         // GET: Product
         public async Task<IActionResult> Index()
         {
