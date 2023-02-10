@@ -1,5 +1,8 @@
-﻿namespace Furniture.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Furniture.Models
 {
+    
     public class Product:Entity
     {
         public int Id { get; set; }

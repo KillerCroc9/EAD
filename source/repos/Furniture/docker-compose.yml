@@ -1,0 +1,46 @@
+version: '3.9'
+networks:
+  networkapp:
+
+services:
+  appdb:
+    container_name: app-db
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+        - 8002:1433
+    environment: 
+       - ACCEPT_EULA=Y
+       - MSSQL_SA_PASSWORD=docker@12345#
+    networks:
+        - networkapp
+    expose:
+      # Opens port 3306 on the container
+      - '8002'
+    #  # Where our data will be persisted
+    #volumes:
+    #  - appdb:/usr/local/sbin
+
+    
+ 
+
+  furniture:
+    container_name: furniture
+    image: ${DOCKER_REGISTRY-}furniture
+    build:
+      context: .
+      dockerfile: Furniture/Dockerfile
+    ports:
+        - 8001:80
+    depends_on:
+        -  appdb
+    environment:
+        - DB_HOST=appdb 
+        - DB_NAME=master
+        - DB_SA_PASSWORD=docker@12345#
+    networks:
+        - networkapp
+    expose:
+      # Opens port 3306 on the container
+      - '8001'
+
+

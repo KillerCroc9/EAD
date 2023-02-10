@@ -5,12 +5,15 @@ using Microsoft.EntityFrameworkCore;
 using Furniture.Models;
 using System.Diagnostics;
 using Furniture.Helper;
+using Elfie.Serialization;
+using Microsoft.Data.SqlClient;
+using System;
 
 namespace Furniture.Data.FurnitureContext;
 
 public class AuthDB : IdentityDbContext<FurnitureUser>
 {
-    /*public AuthDB()
+    /*public AuthDB(Cu)
     {
         Database.Migrate();
     }*/
@@ -19,6 +22,8 @@ public class AuthDB : IdentityDbContext<FurnitureUser>
         : base(options)
     {
         this.currentUserService = currentUserService;
+        // Database.EnsureDeleted();
+        Database.Migrate();
     }
 
     protected override void OnModelCreating(ModelBuilder builder)
@@ -32,8 +37,14 @@ public class AuthDB : IdentityDbContext<FurnitureUser>
     public DbSet<Furniture.Models.Product> Product { get; set; } = default!;
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer(@"Server = localhost, 1440; Database = master; User = sa; Password =
-Docker123!;");
+        var dbHost = Environment.GetEnvironmentVariable("DB_HOST");
+        var dbName = Environment.GetEnvironmentVariable("DB_NAME");
+        var dbPassword = Environment.GetEnvironmentVariable("DB_SA_PASSWORD");
+        //optionsBuilder.UseSqlServer(
+        //    @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Furniture;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+
+        //$"Data Source={dbHost};Initial Catalog={dbName};User ID=sa; Password=docker@12345#;Encrypt=false;Trusted_Connection=False; MultipleActiveResultSets=true"
+        optionsBuilder.UseSqlServer($"Data Source={dbHost};Initial Catalog={dbName};User ID=sa; Password=docker@12345#;Encrypt=false;Trusted_Connection=False; MultipleActiveResultSets=true");
     }
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {

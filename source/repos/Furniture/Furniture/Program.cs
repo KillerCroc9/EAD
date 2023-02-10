@@ -14,7 +14,8 @@ namespace Furniture
 
             builder.Services.AddDbContext<AuthDB>(options => options.UseSqlServer(connectionString));
             builder.Services.AddDefaultIdentity<FurnitureUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<AuthDB>();
-            builder.Services.AddTransient<ICurrentUserService, CurrentUserService>();
+            //builder.Services.AddTransient<ICurrentUserService, CurrentUserService>();
+            builder.Services.AddSingleton<ICurrentUserService, CurrentUserService>();
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 

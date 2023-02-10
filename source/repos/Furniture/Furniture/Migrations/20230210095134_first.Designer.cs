@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Furniture.Migrations
 {
     [DbContext(typeof(AuthDB))]
-    [Migration("20230206200941_dockermig")]
-    partial class dockermig
+    [Migration("20230210095134_first")]
+    partial class first
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

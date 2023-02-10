@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 namespace Furniture.Areas.Identity.Data;
 
 // Add profile data for application users by adding properties to the FurnitureUser class
+
 public class FurnitureUser : IdentityUser
 {
     [PersonalData]
