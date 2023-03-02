@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Furniture.Migrations
 {
     /// <inheritdoc />
-    public partial class first : Migration
+    public partial class mig2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -62,6 +62,7 @@ namespace Furniture.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     filename = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    contact = table.Column<long>(type: "bigint", nullable: true),
                     CreatedByUser = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedByUser = table.Column<string>(type: "nvarchar(max)", nullable: false),

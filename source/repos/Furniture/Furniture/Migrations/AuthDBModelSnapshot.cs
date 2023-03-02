@@ -128,6 +128,9 @@ namespace Furniture.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<long?>("contact")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("filename")
                         .HasColumnType("nvarchar(max)");
 

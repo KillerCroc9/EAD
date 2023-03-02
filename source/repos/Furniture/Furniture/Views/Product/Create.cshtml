@@ -5,10 +5,32 @@
 }
 @using(Html.BeginForm("Create","Product",FormMethod.Post, new {@enctype="multipart/form-data"}))
 {
+    <head>
+        <script>
+            function createProduct(){
+            $.ajax({
+                type: "POST",
+                url: 'Product/Create',
+                data;{},
+                success: function (result) {
+
+                        alert(result);
+
+                },
+                failure: function (jqXHR, textStatus, errorThrown) {                  
+
+                alert("Status: " + jqXHR.status + "; Error: " + jqXHR.responseText);       
+
+                }  
+                });
+            }
+        </script>
+    </head>
         <h1>Create</h1>
 
         <h4>Product</h4>
         <hr />
+        
         <div class="row">
             <div class="col-md-4">
                 <form asp-action="Create">
@@ -16,7 +38,8 @@
                     <div class="form-group">
                         <label asp-for="Name" class="control-label"></label>
                         <input asp-for="Name" class="form-control" />
-                        <span asp-validation-for="Name" class="text-danger"></span>
+                        <span asp-validation-for="Name" class="text-danger">
+                        </span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Description" class="control-label"></label>
@@ -28,11 +51,18 @@
                         <input asp-for="Price" class="form-control" />
                         <span asp-validation-for="Price" class="text-danger"></span>
                     </div>
+
+                <div class="form-group">
+                    <label asp-for="contact" class="control-label"></label>
+                    <input asp-for="contact" class="form-control" />
+                    <span asp-validation-for="contact" class="text-danger"></span>
+                </div>
+
                     <p>enter file: </p>
                     <input type="file" name="file">
             
                     <div class="form-group">
-                        <input type="submit" value="Create" class="btn btn-primary" />
+                    <input type="submit" value="Create" class="btn btn-primary" />
                     </div>
                 </form>
             </div>

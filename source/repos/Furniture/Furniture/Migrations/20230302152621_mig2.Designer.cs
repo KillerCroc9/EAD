@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Furniture.Migrations
 {
     [DbContext(typeof(AuthDB))]
-    [Migration("20230210095134_first")]
-    partial class first
+    [Migration("20230302152621_mig2")]
+    partial class mig2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -130,6 +130,9 @@ namespace Furniture.Migrations
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<long?>("contact")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("filename")
                         .HasColumnType("nvarchar(max)");

@@ -63,7 +63,7 @@ namespace Furniture.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Price,file")] ProdInput productInp)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,Price,file,contact")] ProdInput productInp)
         {
             Product product = new Product();
             try
@@ -83,6 +83,7 @@ namespace Furniture.Controllers
                 product.Name = productInp.Name;
                 product.Description = productInp.Description;
                 product.Price = productInp.Price;
+                product.contact= productInp.contact;
 
                 if (ModelState.IsValid)
                 {
@@ -122,7 +123,7 @@ namespace Furniture.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price,file")] ProdInput productInp)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price,file,contact")] ProdInput productInp)
         {
             Product product = new Product();
             try
@@ -150,11 +151,13 @@ namespace Furniture.Controllers
                 product.Name = productInp.Name;
                 product.Description = productInp.Description;
                 product.Price = productInp.Price;
+                product.contact = productInp.contact;
 
                 if (id != product.Id)
                 {
                     return NotFound();
                 }
+              
 
                 if (ModelState.IsValid)
                 {
